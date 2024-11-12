@@ -36,7 +36,12 @@
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="./ubicacion.html">Ubicación</a>
             </li>
-
+            <div id="carrito">
+                <h2>Carrito de compras</h2>
+                <ul id="lista-carrito">
+                    </ul>
+                <p>Total: $<span id="total">0</span></p>
+            </div>
             </ul>
         </nav>
         </div>
@@ -48,6 +53,8 @@
                 <h2>Churros Festivos</h2>
                 <img src="../assets/churros festivos.jpg" alt="churros con salsas">
             <p>Son crujientes, cubiertos con chocolate, galleta, y colores vibrantes.</p>
+            <p>12000</p>
+            <button onclick="agregarAlCarrito(1)">Agregar al carrito </button>
             </article>
         </section>
         <section>
@@ -57,6 +64,9 @@
                 <p>
                     Son tradicionales, espolvoreados con azúcar y acompañados de salsas variadas para sumergir.
                 </p>
+                <p>8000</p>
+                <button onclick="agregarAlCarrito(2)">Agregar al carrito </button>
+
             </article>
         </section>
         <section>
@@ -64,6 +74,8 @@
                 <h2>Churro Arcoíris</h2>
                 <img src="../assets/churro arcoiris.jpg" alt="churro con chips de colores">
                 <p>Es un churro en forma de herradura, cubierto de chocolate y decorado con granillos de colores.</p>
+                <p>10000</p>
+                <button onclick="agregarAlCarrito(3)">Agregar al carrito </button>
             </article>
         </section>
         <section>
@@ -71,6 +83,8 @@
                 <h2>Churros Clasicos</h2>
                 <img src="../assets/churros clasicos.jpg" alt="vitrina llena de churros">
                 <p>Receta clásica, 15 churros con azucar y mucha sazón</p>
+                <p>6000</p>
+                <button onclick="agregarAlCarrito(4)">Agregar al carrito </button>
             </article>
         </section>
     </main>
@@ -78,6 +92,10 @@
         <p> Todos los derechos reservados</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../js/script.js">
+        
+    </script>
+    
     
 </body>
 </html>
