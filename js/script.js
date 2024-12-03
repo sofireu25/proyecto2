@@ -101,10 +101,9 @@ const renderizarProductos = () => {
                 <button class="btn-agregar" data-id="${producto.id}" aria-label="Agregar ${producto.nombre} al carrito">Agregar al carrito</button>
             </article>
         `;
-        productosGrid.innerHTML += productoHTML; // Agregamos los productos al contenedor
+        productosGrid.innerHTML += productoHTML;
     });
 
-    // Agregar eventos a los botones
     document.querySelectorAll('.btn-agregar').forEach(btn =>
         btn.addEventListener('click', () => agregarAlCarrito(Number(btn.dataset.id)))
     );
@@ -143,6 +142,31 @@ const actualizarCarrito = () => {
         productoLi.textContent = `${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: $${producto.precio * producto.cantidad}`;
         listaCarrito.appendChild(productoLi);
     });
+
+    // Mostrar u ocultar los botones según el estado del carrito
+    const btnComprar = document.getElementById('btn-comprar');
+    const btnVaciar = document.getElementById('btn-vaciar');
+    if (cantidadTotal > 0) {
+        btnComprar.classList.remove('d-none');
+        btnVaciar.classList.remove('d-none');
+    } else {
+        btnComprar.classList.add('d-none');
+        btnVaciar.classList.add('d-none');
+    }
+};
+
+// Vaciar el carrito
+const vaciarCarrito = () => {
+    carrito = [];
+    guardarCarrito();
+    actualizarCarrito();
+};
+
+// Comprar
+const comprar = () => {
+    const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+    alert(`Gracias por tu compra. Total a pagar: $${total}`);
+    vaciarCarrito();
 };
 
 // Guardar el carrito en LocalStorage
@@ -152,17 +176,9 @@ const guardarCarrito = () => {
 
 // Lógica para mostrar/ocultar el carrito
 const toggleCarrito = () => {
-    console.log('Carrito toggled'); // Verificar en la consola
     const carritoElement = document.getElementById('carrito');
-    
-    if (carritoElement.classList.contains('d-none')) {
-        carritoElement.classList.remove('d-none');
-    } else {
-        carritoElement.classList.add('d-none');
-    }
+    carritoElement.classList.toggle('d-none');
 };
-
-
 
 // Inicializar
 const inicializar = () => {
@@ -171,6 +187,20 @@ const inicializar = () => {
 
     // Añadir evento al icono del carrito
     document.getElementById('icono-carrito').addEventListener('click', toggleCarrito);
+
+    // Añadir eventos a los botones de "Comprar" y "Vaciar carrito"
+    document.getElementById('btn-comprar').addEventListener('click', () => {
+        alert(`Gracias por tu compra. Total: $${carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0)}`);
+        carrito = [];
+        guardarCarrito();
+        actualizarCarrito();
+    });
+
+    document.getElementById('btn-vaciar').addEventListener('click', () => {
+        carrito = [];
+        guardarCarrito();
+        actualizarCarrito();
+    });
 };
 
 inicializar();
